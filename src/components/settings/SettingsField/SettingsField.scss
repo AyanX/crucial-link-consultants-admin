@@ -1,0 +1,55 @@
+.settings-field {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	&__label {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--color-text-primary);
+		letter-spacing: 0.01em;
+	}
+
+	&__input-wrap {
+		position: relative;
+		display: flex;
+		align-items: center;
+	}
+
+	&__icon {
+		position: absolute;
+		left: 14px;
+		color: var(--color-text-muted);
+		display: flex;
+		align-items: center;
+		pointer-events: none;
+	}
+
+	&__input {
+		width: 100%;
+		height: 48px;
+		padding: 0 16px;
+		border: 1.5px solid var(--color-card-border);
+		border-radius: var(--radius-md);
+		font-size: 14px;
+		color: var(--color-text-primary);
+		background: white;
+		font-family: var(--font-body);
+		transition: border-color var(--transition-base), box-shadow var(--transition-base);
+		outline: none;
+
+		&::placeholder {
+			color: var(--color-text-muted);
+		}
+
+		&:focus {
+			border-color: var(--color-green);
+			box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+		}
+
+		&--icon {
+			padding-left: 38px;
+		}
+	}
+}
+

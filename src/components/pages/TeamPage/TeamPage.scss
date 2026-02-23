@@ -1,0 +1,158 @@
+.team-page {
+  gap: 24px;
+}
+
+.team-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.team-page__title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.team-page__title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.team-page__subtitle {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+
+.team-page__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+// ── View toggle ───────────────────────────────────────
+.view-toggle {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--color-card-border);
+  border-radius: 10px;
+  padding: 4px;
+  gap: 2px;
+
+  &__btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+
+    &--active {
+      background: var(--color-accent);
+      color: white;
+    }
+
+    &:not(&--active):hover {
+      background: #f1f5f9;
+      color: var(--color-text-primary);
+    }
+  }
+}
+
+// ── Add member button ─────────────────────────────────
+.btn-add-member {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--transition-base);
+
+  &:hover {
+    background: #243447;
+    box-shadow: 0 4px 12px rgba(15, 22, 33, 0.25);
+  }
+}
+
+// ── Grid ──────────────────────────────────────────────
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  &--list {
+    grid-template-columns: 1fr;
+
+    .member-card {
+      flex-direction: row;
+      text-align: left;
+      padding: 20px 24px;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .member-card__avatar-wrap {
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+
+    .member-card__actions {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+      margin-left: auto;
+    }
+
+    .member-card__skills { justify-content: flex-start; }
+
+    .add-member-card {
+      flex-direction: row;
+      min-height: 80px;
+      justify-content: center;
+      padding: 20px 24px;
+    }
+  }
+
+  @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 640px)  { grid-template-columns: 1fr; }
+}
+
+// ── Loading skeletons ─────────────────────────────────
+.team-page__loading {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+
+  @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 640px)  { grid-template-columns: 1fr; }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.skeleton-card {
+  height: 280px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}

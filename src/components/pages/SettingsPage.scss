@@ -1,0 +1,21 @@
+.settings-page {
+  gap: 24px;
+
+  &__header {
+    margin-bottom: 4px;
+  }
+
+  &__title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-bottom: 6px;
+  }
+
+  &__subtitle {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+  }
+}

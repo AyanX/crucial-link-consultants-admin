@@ -1,0 +1,139 @@
+
+.member-card {
+	background: var(--color-white);
+	border: 1px solid var(--color-card-border);
+	border-radius: var(--radius-xl);
+	padding: 32px 24px 24px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	transition: all var(--transition-base);
+	position: relative;
+
+	&:hover {
+		box-shadow: var(--shadow-card-hover);
+		border-color: rgba(34, 197, 94, 0.2);
+		transform: translateY(-2px);
+	}
+
+	&__avatar-wrap {
+		position: relative;
+		width: 88px;
+		height: 88px;
+		margin-bottom: 16px;
+	}
+
+	&__avatar-img {
+		width: 88px;
+		height: 88px;
+		border-radius: 50%;
+		object-fit: cover;
+		border: 3px solid var(--color-card-border);
+	}
+
+	&__avatar-placeholder {
+		width: 88px;
+		height: 88px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-family: var(--font-display);
+		font-size: 26px;
+		font-weight: 800;
+		color: #5a3e28;
+		border: 3px solid rgba(34, 197, 94, 0.3);
+	}
+
+	&__active-badge {
+		position: absolute;
+		bottom: 2px;
+		right: 2px;
+		width: 24px;
+		height: 24px;
+		background: white;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--color-green);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	}
+
+	&__name {
+		font-family: var(--font-display);
+		font-size: 16px;
+		font-weight: 700;
+		color: var(--color-text-primary);
+		margin-bottom: 4px;
+	}
+
+	&__title {
+		font-size: 13px;
+		color: var(--color-text-secondary);
+		margin-bottom: 14px;
+	}
+
+	&__skills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		justify-content: center;
+		margin-bottom: 20px;
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-top: auto;
+		padding-top: 16px;
+		border-top: 1px solid var(--color-card-border);
+		width: 100%;
+		justify-content: center;
+	}
+
+	&__action-btn {
+		width: 36px;
+		height: 36px;
+		border-radius: 9px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px solid var(--color-card-border);
+		background: transparent;
+		cursor: pointer;
+		transition: all var(--transition-base);
+
+		&--edit {
+			color: var(--color-text-muted);
+
+			&:hover {
+				background: rgba(34, 197, 94, 0.08);
+				border-color: var(--color-green);
+				color: var(--color-green-dark);
+			}
+		}
+
+		&--delete {
+			color: var(--color-text-muted);
+
+			&:hover {
+				background: rgba(239, 68, 68, 0.08);
+				border-color: var(--color-danger);
+				color: var(--color-danger);
+			}
+		}
+	}
+}
+
+.skill-pill {
+	font-size: 11px;
+	font-weight: 600;
+	padding: 3px 10px;
+	border-radius: 20px;
+	background: var(--color-green-light);
+	color: var(--color-green-dark);
+	letter-spacing: 0.02em;
+}
