@@ -1,13 +1,65 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { Info, Save } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
 import { useMetrics } from '../../hooks/useMetrics';
 import MetricCard from '../MetricCard/MetricCard';
+import type { MetricCard as MetricCardType} from '../../types';
 import UpdatesLog from '../UpdatesLog/UpdatesLog';
 import PublicPreview from '../PublicPreview/PublicPreview';
-import { INITIAL_METRICS, LOG_ENTRIES } from '../../data/metrics';
+import {LOG_ENTRIES } from '../../data/metrics';
+import { useDashboard } from '../../context/DashboardContext';
+
+
+
 
 const SiteContentPage: React.FC = () => {
+  const {webInfo} = useDashboard();
+
+  const INITIAL_METRICS: MetricCardType[] = [
+	{
+		id: 'total_projects',
+		label: 'Total Projects',
+		value: webInfo?.total_projects ||"",
+		description: "Displayed in the 'Impact' section of the homepage.",
+		icon: 'LayoutDashboard',
+	},
+	{
+		id: 'regions_served',
+		label: 'Regions Served',
+		value: webInfo?.regions_served || '',
+		description: 'Used for the global coverage map visualization.',
+		icon: 'Globe',
+	},
+	{
+		id: 'client_retention',
+		label: 'Client Retention Rate',
+		value: webInfo?.client_retention || '',
+		description: 'Highlight of the annual shareholder report module.',
+		icon: 'UserCheck',
+	},
+	{
+		id: 'data_points',
+		label: 'Data Points Analyzed',
+		value: webInfo?.data_points || '',
+		description: "Showcases the scale of CLC's proprietary algorithms.",
+		icon: 'Database',
+	},
+	{
+		id: 'compliance',
+		label: 'Compliance Increase',
+		value: webInfo?.compliance_increase || '',
+		description: 'Key benefit metric displayed for new corporate clients.',
+		icon: 'Shield',
+	},
+	{
+		id: 'experience',
+		label: 'Years of Experience',
+		value: webInfo?.years_of_experience || '',
+		description: 'Historical trust metric for the "About Us" page.',
+		icon: 'Award',
+	},
+];
+
   const { addToast } = useToast();
   const {
     editValues,

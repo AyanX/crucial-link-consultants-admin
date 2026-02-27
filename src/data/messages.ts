@@ -5,7 +5,7 @@ export const FALLBACK_MESSAGES: Message[] = [
     id: 'msg-001',
     name: 'Sarah Jenkins',
     email: 's.jenkins@example.com',
-    subject: 'Inquiry about M&E Training for 2026',
+    subject: 'Dummy Data for Testing',
     isRead: false,
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(), // 2 hours ago
     organization: 'Global Health Initiative',
@@ -16,7 +16,7 @@ export const FALLBACK_MESSAGES: Message[] = [
     id: 'msg-002',
     name: 'Michael Chen',
     email: 'm.chen@datastrategy.io',
-    subject: 'Consultation Request: Data Strategy',
+    subject: 'Dummy Data for Testing',
     isRead: true,
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 27).toISOString(), // yesterday
     organization: 'DataStrategy IO',
@@ -27,7 +27,7 @@ export const FALLBACK_MESSAGES: Message[] = [
     id: 'msg-003',
     name: 'Amina Okoro',
     email: 'a.okoro@westafricapartners.org',
-    subject: 'Partnership Inquiry – West Africa',
+    subject: 'Dummy Data for Testing',
     isRead: true,
     created_at: new Date(Date.now() - 1000 * 60 * 60 * 72).toISOString(), // 3 days ago
     organization: 'West Africa Partners NGO',

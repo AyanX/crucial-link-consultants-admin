@@ -2,15 +2,15 @@ import React, { useCallback } from 'react';
 import { Contact, Share2, ShieldCheck } from 'lucide-react';
 import { Globe, AtSign, Linkedin, Twitter } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
-import { useSettings } from '../../hooks/useSettings';
 import SettingsSection from '../settings/SettingsSection/SettingsSection';
 import SettingsField from '../settings/SettingsField/SettingsField';
 import PasswordField from '../settings/PasswordField/PasswordField';
 import './SettingsPage.scss';
+import { useDashboard } from '../../context/DashboardContext';
 
 const SettingsPage: React.FC = () => {
 	const { addToast } = useToast();
-	const { settings, saving, updateField, saveSection } = useSettings();
+	const { settings, saving, updateField, saveSection } = useDashboard();
 
 	const handleSave = useCallback(
 		(section: 'contact' | 'social' | 'security') => {

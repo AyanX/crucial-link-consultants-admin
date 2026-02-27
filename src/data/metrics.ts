@@ -1,45 +1,47 @@
 import type { MetricCard, LogEntry, NavItem } from '../types';
 
+
+
 export const INITIAL_METRICS: MetricCard[] = [
 	{
 		id: 'total_projects',
 		label: 'Total Projects',
-		value: '1,240+',
+		value: '',
 		description: "Displayed in the 'Impact' section of the homepage.",
 		icon: 'LayoutDashboard',
 	},
 	{
 		id: 'regions_served',
 		label: 'Regions Served',
-		value: '48 Countries',
+		value: '',
 		description: 'Used for the global coverage map visualization.',
 		icon: 'Globe',
 	},
 	{
 		id: 'client_retention',
 		label: 'Client Retention Rate',
-		value: '98.5%',
+		value: "",
 		description: 'Highlight of the annual shareholder report module.',
 		icon: 'UserCheck',
 	},
 	{
 		id: 'data_points',
 		label: 'Data Points Analyzed',
-		value: '12.4 Billion',
+		value: '',
 		description: "Showcases the scale of CLC's proprietary algorithms.",
 		icon: 'Database',
 	},
 	{
 		id: 'compliance',
 		label: 'Compliance Increase',
-		value: '42% Avg.',
+		value: '',
 		description: 'Key benefit metric displayed for new corporate clients.',
 		icon: 'Shield',
 	},
 	{
 		id: 'experience',
 		label: 'Years of Experience',
-		value: '25 Years',
+		value: '',
 		description: 'Historical trust metric for the "About Us" page.',
 		icon: 'Award',
 	},

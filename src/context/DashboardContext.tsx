@@ -18,11 +18,12 @@ import {
   FALLBACK_COMPLIANCE,
   BASE_URL,
 } from "../data/dashboard";
+import { useSettings } from "../hooks/useSettings";
+import { useTeam } from "../hooks/useTeam";
 
 const DashboardContext = createContext<DashboardContextValue>(
   {} as DashboardContextValue,
 );
-
 
 export const useDashboard = () => useContext(DashboardContext);
 
@@ -52,6 +53,17 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({
   // ── Unread messages count ─────────────────────────────
   const [unreadCount, setUnreadCount] = useState(0);
 
+  // webinfo fetch (for metrics)
+  const [webInfo, setWebInfo] = useState<WebsiteInfo | null>(null);
+
+  // settings page hook
+  const { settings, saving, updateField, saveSection } = useSettings();
+
+  //team members
+
+  const { members, loading, submitting, addMember, editMember, deleteMember } =
+    useTeam();
+
   const hasFetched = useRef(false);
 
   // ── Fetch everything on mount with Promise.all ────────
@@ -61,17 +73,32 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({
 
     const fetchAll = async () => {
       try {
-        const [websiteInfoRes, callingTimesRes, whyPickUsRes, messagesRes] =
-          await Promise.all([
-            fetch(`${BASE_URL}/website-info`).catch(() => null),
-            fetch(`${BASE_URL}/calling-times`).catch(() => null),
-            fetch(`${BASE_URL}/why-pick-us`).catch(() => null),
-            fetch(`${BASE_URL}/messages`).catch(() => null),
-          ]);
+        const [
+          websiteInfoRes,
+          callingTimesRes,
+          whyPickUsRes,
+          messagesRes
+        ] = await Promise.all([
+          fetch(`${BASE_URL}/website-info`, {
+            credentials: "include",
+          }).catch(() => null),
 
+          fetch(`${BASE_URL}/calling-times`, {
+            credentials: "include",
+          }).catch(() => null),
+
+          fetch(`${BASE_URL}/why-pick-us`, {
+            credentials: "include",
+          }).catch(() => null),
+
+          fetch(`${BASE_URL}/messages`, {
+            credentials: "include",
+          }).catch(() => null),
+        ]);
         // Website info / compliance
         if (websiteInfoRes?.ok) {
           const data = await websiteInfoRes.json();
+          setWebInfo(data);
           setCompliance({
             compliance_increase:
               data.compliance_increase ??
@@ -131,8 +158,9 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({
       try {
         const res = await fetch(`${BASE_URL}/website-info`, {
           method: "POST",
+          credentials: "include", 
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(compliance),
+          body: JSON.stringify({ metrics: compliance }),
         });
         if (!res.ok) throw new Error(`Server error ${res.status}`);
         onSuccess();
@@ -159,6 +187,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({
       try {
         const res = await fetch(`${BASE_URL}/calling-times`, {
           method: "POST",
+          credentials: "include", 
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(callingTime),
         });
@@ -183,7 +212,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({
       setAddingReason(true);
       try {
         const res = await fetch(`${BASE_URL}/why-pick-us`, {
-          method: "POST",
+          method: "POST",credentials: "include", 
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ content }),
         });
@@ -218,7 +247,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({
       setEditingReasonId(id);
       try {
         const res = await fetch(`${BASE_URL}/why-pick-us/${id}`, {
-          method: "PATCH",
+          method: "PATCH",credentials: "include", 
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ content }),
         });
@@ -249,7 +278,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({
       setDeletingReasonId(id);
       try {
         const res = await fetch(`${BASE_URL}/why-pick-us/${id}`, {
-          method: "DELETE",
+          method: "DELETE",credentials: "include", 
         });
         if (!res.ok) throw new Error(`Server error ${res.status}`);
         setWhyPickUs((prev) => prev.filter((item) => item.id !== id));
@@ -267,6 +296,16 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({
   return (
     <DashboardContext.Provider
       value={{
+        members,
+        loading,
+        submitting,
+        addMember,
+        editMember,
+        deleteMember,
+        settings,
+        saving,
+        updateField,
+        saveSection,
         compliance,
         complianceLoading,
         updateCompliance,
@@ -274,6 +313,7 @@ export const DashboardProvider: React.FC<{ children: React.ReactNode }> = ({
         complianceSaving,
         callingTime,
         callingTimeLoading,
+        webInfo,
         updateCallingTime,
         submitCallingTime,
         callingTimeSaving,

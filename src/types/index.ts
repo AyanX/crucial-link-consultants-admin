@@ -127,10 +127,29 @@ export interface CallingTime {
 export interface WebsiteInfo {
   compliance_increase: string;
   compliance_time: string;
+  client_retention: string;
+  regions_served: string;
+  data_points: string;
+  years_of_experience:string;
+  total_projects:string;
   [key: string]: unknown;
 }
 
 export interface DashboardContextValue {
+	//settings
+	settings:AllSettings
+	saving:Partial<Record<SettingsSectionKey, boolean>>;
+	updateField:<K extends keyof AllSettings>(section: K, field: keyof AllSettings[K], value: string) => void;
+	saveSection:(section: keyof AllSettings, onSuccess: () => void, onError: (msg: string) => void) => Promise<void>;
+
+	// team members
+	members:TeamMember[];
+	loading:boolean;
+	submitting:boolean;
+	addMember:(data: MemberFormData, onSuccess: () => void, onError: (msg: string) => void) => Promise<void>;
+	editMember:(id: string, data: MemberFormData, onSuccess: () => void, onError: (msg: string) => void) => Promise<void>;
+	deleteMember:(id: string, onSuccess: () => void, onError: (msg: string) => void) => Promise<void>;
+
   // Compliance
   compliance: WebsiteInfo;
   complianceLoading: boolean;
@@ -155,6 +174,37 @@ export interface DashboardContextValue {
   deletingReasonId: number | null;
   editingReasonId: number | null;
 
+  // Website info (for metrics)
+  webInfo: WebsiteInfo | null;
+
   // Unread messages count (for notification bar)
   unreadCount: number;
+}
+
+
+
+// ── Auth
+export interface LoginPayload {
+  email: string;
+  password: string;
+  rememberDevice: boolean;
+}
+
+export interface AuthUser {
+  id: string;
+  email: string;
+  name: string;
+  token: string;
+}
+
+export interface AuthContextValue {
+  user: AuthUser | null;
+  initials:string,
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  login: (
+    payload: LoginPayload,
+    onError: (msg: string) => void
+  ) => Promise<void>;
+  logout: () => void;
 }

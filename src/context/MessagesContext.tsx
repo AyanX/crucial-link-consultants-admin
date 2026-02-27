@@ -38,7 +38,7 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     (async () => {
       try {
-        const res = await fetch('http://localhost:9000/api/messages');
+        const res = await fetch('http://localhost:9000/api/messages', {credentials: "include", });
         if (!res.ok) {
             setMessages(FALLBACK_MESSAGES);
             setError(null); // fallback used — no visible error
@@ -71,7 +71,7 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     // Fire and forget — post to API
     fetch(`http://localhost:9000/api/messages/read/${id}`, {
-      method: 'POST',
+      method: 'POST',credentials: "include", 
       headers: { 'Content-Type': 'application/json' },
     }).catch(() => {/* silently ignore */});
   }, []);
@@ -81,7 +81,7 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     setDeletingId(id);
     try {
       await fetch(`http://localhost:9000/api/messages/${id}`, {
-        method: 'DELETE',
+        method: 'DELETE',credentials: "include", 
         headers: { 'Content-Type': 'application/json' },
       });
     } catch {

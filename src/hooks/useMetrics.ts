@@ -51,8 +51,8 @@ export const useMetrics = (): UseMetricsReturn => {
 		};
 
 		try {
-			const res = await fetch('http://localhost:9000/api/dashboard', {
-				method: 'POST',
+			const res = await fetch('http://localhost:9000/api/website-info', {
+				method: 'POST',credentials: "include", 
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(payload),
 			});

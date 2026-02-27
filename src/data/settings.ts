@@ -2,28 +2,28 @@ import type { AllSettings } from '../types';
 
 export const INITIAL_SETTINGS: AllSettings = {
 	contact: {
-		email: 'admin@clc-consultants.com',
-		phone: '+1 (555) 000-0000',
-		location: '123 Corporate Way, Suite 500',
-		city: 'New York, NY',
+		email: '',
+		phone: '+254 ',
+		location: '',
+		city: '',
 	},
 	social: {
-		facebook: 'facebook.com/clc-official',
-		twitter: 'twitter.com/clc_consultants',
-		linkedin: 'linkedin.com/company/clc',
-		supportEmail: 'social@clc.com',
+		facebook: '',
+		twitter: '',
+		linkedin: '',
+		supportEmail: '',
 	},
 	security: {
-		adminEmail: 'master-admin@clc.com',
-		username: 'clc_admin_2024',
-		currentPassword: '••••••••',
+		adminEmail: '',
+		username: '',
+		currentPassword: '',
 		newPassword: '',
 	},
 };
 
 export const SETTINGS_API_ENDPOINTS: Record<string, string> = {
-	contact:  'http://localhost:9000/api/settings/contact',
-	social:   'http://localhost:9000/api/settings/social',
+	contact:  'http://localhost:9000/api/contacts',
+	social:   'http://localhost:9000/api/socials',
 	security: 'http://localhost:9000/api/settings/security',
 };
 

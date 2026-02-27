@@ -8,7 +8,6 @@ const ComplianceSettings: React.FC = () => {
 	const { compliance, complianceLoading, updateCompliance, submitCompliance, complianceSaving } = useDashboard();
 	const { addToast } = useToast();
 
-    console.log('Compliance Settings Rendered', { compliance, complianceLoading, complianceSaving });
 	return (
 		<div className="dashboard-card">
 			<div className="dashboard-card__header">

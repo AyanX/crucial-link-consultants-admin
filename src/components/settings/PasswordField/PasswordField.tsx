@@ -15,7 +15,6 @@ const PasswordField: React.FC<PasswordFieldProps> = ({
 	label,
 	value,
 	placeholder,
-	showToggle = false,
 	showRefresh = false,
 	onChange,
 }) => {

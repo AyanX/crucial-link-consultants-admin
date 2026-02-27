@@ -1,16 +1,16 @@
 import React, { useState, useCallback } from 'react';
 import { UserPlus, LayoutGrid, List } from 'lucide-react';
 import { useToast } from '../../../context/ToastContext';
-import { useTeam } from '../../../hooks/useTeam';
 import type { TeamMember, MemberFormData, ModalMode } from '../../../types';
 import MemberCard from '../../team/MemberCard/MemberCard';
 import AddMemberCard from '../../team/AddMemberCard/AddMemberCard';
 import MemberModal from '../../team/MemberModal/MemberModal';
 import './TeamPage.scss';
+import { useDashboard } from '../../../context/DashboardContext';
 
 const TeamPage: React.FC = () => {
   const { addToast } = useToast();
-  const { members, loading, submitting, addMember, editMember, deleteMember } = useTeam();
+  const { members, loading, submitting, addMember, editMember, deleteMember } = useDashboard()
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState<ModalMode>('add');

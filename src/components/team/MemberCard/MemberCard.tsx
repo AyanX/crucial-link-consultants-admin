@@ -45,7 +45,7 @@ const MemberCard: React.FC<MemberCardProps> = ({ member, onEdit, onDelete }) => 
 
     {member.skills.length > 0 && (
       <div className="member-card__skills">
-        {member.skills.slice(0, 3).map(skill => (
+        {member.skills?.slice(0, 3).map(skill => (
           <span key={skill} className="skill-pill">{skill}</span>
         ))}
       </div>
