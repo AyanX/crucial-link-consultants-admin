@@ -4,9 +4,6 @@ import { useToast } from '../../context/ToastContext';
 import { useMetrics } from '../../hooks/useMetrics';
 import MetricCard from '../MetricCard/MetricCard';
 import type { MetricCard as MetricCardType} from '../../types';
-import UpdatesLog from '../UpdatesLog/UpdatesLog';
-import PublicPreview from '../PublicPreview/PublicPreview';
-import {LOG_ENTRIES } from '../../data/metrics';
 import { useDashboard } from '../../context/DashboardContext';
 
 
@@ -100,10 +97,7 @@ const SiteContentPage: React.FC = () => {
               Update the global statistics shown on the corporate public landing page.
             </p>
           </div>
-          <div className="sync-badge">
-            <span className="sync-dot" />
-            Last Sync: Today at 09:42 AM
-          </div>
+       
         </div>
 
         <div className="metrics-grid">
@@ -143,10 +137,6 @@ const SiteContentPage: React.FC = () => {
         </div>
       </section>
 
-      <div className="bottom-row">
-        <UpdatesLog entries={LOG_ENTRIES} />
-        <PublicPreview />
-      </div>
     </div>
   );
 };

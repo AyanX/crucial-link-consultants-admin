@@ -19,6 +19,9 @@ const MetricCard: React.FC<MetricCardProps> = ({
   const isEditing = editingId === card.id;
   const displayValue = editValues[card.id] ?? card.value;
 
+  // regions_server and years_of_experience should only accept numeric input
+  const isNumericField = ['regions_served', 'experience'].includes(card.id);
+
   return (
     <div className={`metric-card ${isEditing ? 'metric-card--editing' : ''}`}>
       <div className="metric-card__header">
@@ -42,6 +45,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
 
       {isEditing ? (
         <input
+          type={isNumericField ? 'number' : 'text'}
           className="metric-card__input"
           value={displayValue}
           onChange={e => onValueChange(card.id, e.target.value)}
