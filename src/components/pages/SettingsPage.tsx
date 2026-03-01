@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { Contact, Share2, ShieldCheck } from 'lucide-react';
-import { Globe, AtSign, Linkedin, Twitter } from 'lucide-react';
+import { Globe, Linkedin, Twitter } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
 import SettingsSection from '../settings/SettingsSection/SettingsSection';
 import SettingsField from '../settings/SettingsField/SettingsField';
@@ -99,14 +99,7 @@ const SettingsPage: React.FC = () => {
 					icon={Linkedin}
 					onChange={v => updateField('social', 'linkedin', v)}
 				/>
-				<SettingsField
-					label="Social Support Email"
-					value={settings.social.supportEmail}
-					placeholder="social@clc.com"
-					type="email"
-					icon={AtSign}
-					onChange={v => updateField('social', 'supportEmail', v)}
-				/>
+				
 			</SettingsSection>
 
 			{/* ── Security Settings ── */}
