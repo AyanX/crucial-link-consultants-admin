@@ -1,0 +1,547 @@
+
+$green:        #22C55E;
+$green-light:  #DCFCE7;
+$green-icon-bg:#DCFCE7;
+$red:          #EF4444;
+$red-light:    #FEF2F2;
+$dark:         #111827;
+$mid:          #374151;
+$muted:        #6B7280;
+$border:       #E5E7EB;
+$bg:           #F3F4F6;
+$white:        #FFFFFF;
+$unread-bg:    #F0FDF4;
+$read-bg:      #FAFAFA;
+$active-bg:    #ECFDF5;
+$active-border:#22C55E;
+$radius-sm:    6px;
+$radius-md:    10px;
+$radius-lg:    14px;
+$tr:           0.2s ease;
+$font:         'Inter', 'DM Sans', system-ui, sans-serif;
+
+.page {
+  font-family: $font;
+  background: $bg;
+  min-height: 100vh;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  color: $dark;
+  -webkit-font-smoothing: antialiased;
+}
+
+.pageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.pageTitle {
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 700;
+  color: $dark;
+  margin: 0;
+}
+
+.pageDesc {
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  color: $muted;
+  margin: 0;
+}
+
+// ── White card 
+.card {
+  background: $white;
+  border-radius: $radius-lg;
+  border: 1px solid $border;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  border-bottom: 1px solid $border;
+}
+
+.cardIcon {
+  width: 38px;
+  height: 38px;
+  border-radius: $radius-sm;
+  background: $green-icon-bg;
+  color: $green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  font-weight: 700;
+  color: $dark;
+  margin: 0;
+}
+
+// ── Topic form 
+.topicRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(0.75rem, 1.5vw, 1.25rem);
+  align-items: flex-end;
+
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $mid;
+}
+
+.input {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1.5px solid $border;
+  border-radius: $radius-sm;
+  font-family: $font;
+  font-size: 0.88rem;
+  color: $dark;
+  background: $white;
+  outline: none;
+  transition: border-color $tr, box-shadow $tr;
+
+  &::placeholder { color: $muted; opacity: 0.65; }
+
+  &:focus {
+    border-color: $green;
+    box-shadow: 0 0 0 3px rgba($green, 0.12);
+  }
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: $green;
+  color: $white;
+  font-family: $font;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.68rem 1.35rem;
+  border-radius: $radius-sm;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background $tr, transform $tr, opacity $tr;
+
+  &:hover:not(:disabled) { background: darken($green, 6%); transform: translateY(-1px); }
+  &:disabled { opacity: 0.55; cursor: not-allowed; }
+}
+
+.topicMsg {
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: $radius-sm;
+  margin: 0;
+}
+.msgOk  { background: $green-light; color: darken($green, 20%); }
+.msgErr { background: $red-light;   color: darken($red, 15%); }
+
+// ── State messages 
+.stateMsg {
+  font-size: 0.88rem;
+  color: $muted;
+  text-align: center;
+  padding: 2rem 0;
+  margin: 0;
+}
+.stateErr { color: $red; }
+.empty    { font-size: 0.88rem; color: $muted; padding: 1.5rem 0; margin: 0; }
+
+// ── Split pane 
+.splitPane {
+  display: grid;
+  grid-template-columns: clamp(240px, 35%, 320px) 1fr;
+  gap: 0;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  overflow: hidden;
+  min-height: clamp(300px, 55vh, 600px);
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+}
+
+// ── Left list pane 
+.listPane {
+  border-right: 1px solid $border;
+  overflow-y: auto;
+
+  @media (max-width: 700px) {
+    border-right: none;
+    border-bottom: 1px solid $border;
+    &.listHidden { display: none; }
+  }
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(0.75rem, 1.5vw, 1.1rem);
+  border-bottom: 1px solid $border;
+  cursor: pointer;
+  transition: background $tr;
+
+  &:last-child { border-bottom: none; }
+
+  &.listItemRead    { background: $read-bg; }
+  &.listItemUnread  { background: $unread-bg; }
+  &.listItemActive  {
+    background: $active-bg !important;
+    border-left: 3px solid $active-border;
+  }
+
+  &:hover:not(.listItemActive) { background: darken($bg, 2%); }
+}
+
+.listItemMain {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.listAvatar {
+  width: clamp(34px, 5vw, 40px);
+  height: clamp(34px, 5vw, 40px);
+  border-radius: 50%;
+  background: $green-light;
+  color: darken($green, 15%);
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.listItemText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  min-width: 0;
+  position: relative;
+}
+
+.listName {
+  font-size: clamp(0.82rem, 1.5vw, 0.9rem);
+  font-weight: 600;
+  color: $dark;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.listPosition {
+  font-size: clamp(0.72rem, 1.3vw, 0.78rem);
+  color: $muted;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: capitalize;
+}
+
+.unreadDot {
+  position: absolute;
+  top: 2px;
+  right: -10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: $green;
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  color: $red;
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  opacity: 0.55;
+  transition: opacity $tr, background $tr;
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    opacity: 1;
+    background: $red-light;
+  }
+  &:disabled { opacity: 0.25; cursor: not-allowed; }
+}
+
+// ── Right detail pane 
+.detailPane {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 700px) {
+    display: none;
+    &.detailVisible { display: flex; }
+  }
+}
+
+.backBtn {
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  border-bottom: 1px solid $border;
+  padding: 0.75rem 1rem;
+  font-family: $font;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: $green;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: background $tr;
+
+  &:hover { background: $green-light; }
+
+  @media (max-width: 700px) {
+    display: flex;
+  }
+}
+
+// ── Empty detail state 
+.detailEmpty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: $muted;
+  font-size: 0.88rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.detailEmptyIcon {
+  color: $border;
+}
+
+// ── Application detail 
+.detail {
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  flex: 1;
+}
+
+.detailHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.detailAvatar {
+  width: clamp(44px, 6vw, 54px);
+  height: clamp(44px, 6vw, 54px);
+  border-radius: 50%;
+  background: $green-light;
+  color: darken($green, 15%);
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.detailName {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  font-weight: 700;
+  color: $dark;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.detailPosition {
+  font-size: 0.8rem;
+  color: $muted;
+  text-transform: capitalize;
+  display: block;
+  margin-top: 0.15rem;
+}
+
+.badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.22rem 0.7rem;
+  border-radius: 999px;
+  margin-left: auto;
+}
+
+.badgeRead    { background: $bg;         color: $muted; }
+.badgeUnread  { background: $green-light; color: darken($green, 20%); }
+
+// ── Detail fields grid 
+.detailGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(160px, 40%, 220px), 1fr));
+  gap: clamp(0.75rem, 1.5vw, 1.1rem);
+}
+
+.detailField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 0.85rem 1rem;
+  background: $bg;
+  border-radius: $radius-sm;
+  border: 1px solid $border;
+}
+
+.detailFieldLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.detailFieldValue {
+  font-size: clamp(0.82rem, 1.5vw, 0.9rem);
+  font-weight: 500;
+  color: $dark;
+  word-break: break-word;
+}
+
+// ── Motivation block
+.motivationBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: $bg;
+  border-radius: $radius-sm;
+  border: 1px solid $border;
+}
+
+.motivationText {
+  font-size: clamp(0.83rem, 1.5vw, 0.92rem);
+  color: $mid;
+  line-height: 1.7;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+// ── Action buttons
+.detailActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-top: 0.5rem;
+  border-top: 1px solid $border;
+  margin-top: auto;
+}
+
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: $green;
+  color: $white;
+  font-family: $font;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+  border-radius: $radius-sm;
+  border: none;
+  cursor: pointer;
+  transition: background $tr, transform $tr;
+
+  &:hover { background: darken($green, 6%); transform: translateY(-1px); }
+}
+
+.detailDeleteBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: $red-light;
+  color: $red;
+  font-family: $font;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+  border-radius: $radius-sm;
+  border: 1.5px solid lighten($red, 25%);
+  cursor: pointer;
+  transition: background $tr, color $tr;
+
+  &:hover:not(:disabled) { background: $red; color: $white; }
+  &:disabled { opacity: 0.45; cursor: not-allowed; }
+}
+
+.noDoc {
+  font-size: 0.8rem;
+  color: $muted;
+  font-style: italic;
+}
+.topicSpan{
+  margin-right: 5px;
+  background-color: #22C55E;
+  color: #FFFFFF;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+
+  button{
+    background-color: #EF4444;
+    color: #ECFDF5;
+    padding: 3px 5px;
+    border: none;
+    border-radius: 5px;
+      font-weight: bold;
+  }
+}

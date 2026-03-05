@@ -12,8 +12,10 @@ import DashboardPage from './components/pages/DashboardPage';
 import { useMetrics } from './hooks/useMetrics';
 import LoginPage from './components/pages/LoginPage/LoginPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import CareersAdmin from './components/pages/Careers/CareersAdmin';
+import axios from 'axios';
 
-
+axios.defaults.withCredentials=true;
 
 // ── Auth guard and main layout
 const ProtectedLayout: React.FC = () => {
@@ -57,6 +59,7 @@ const ProtectedLayout: React.FC = () => {
               <Route path="/site-content" element={<SiteContentPage />} />
               <Route path="/messages"     element={<MessagesPage />} />
               <Route path="/team"         element={<TeamPage />} />
+              <Route path="/careers"      element={<CareersAdmin />} />
               <Route path="/settings"     element={<SettingsPage />} />
             </Routes>
             <footer className="site-footer">
