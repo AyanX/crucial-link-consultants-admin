@@ -8,7 +8,7 @@ import React, {
 import type { AuthContextValue, AuthUser, LoginPayload } from '../types';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:9000/api';
+const BASE_URL = 'https://api.cruciallinkconsultantslt.com/api';
 const STORAGE_KEY = 'clc_auth_user';
 
 const AuthContext = createContext<AuthContextValue>({} as AuthContextValue);

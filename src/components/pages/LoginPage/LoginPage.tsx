@@ -3,7 +3,7 @@ import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import "./LoginPage.scss";
-
+import logo from "../../../assets/logo.webp"
 const LoginPage: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -57,18 +57,12 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="login-page">
-
-
       <div className="login-page__inner">
         {/* Brand */}
         <div className="login-brand">
           <div className="sidebar__logo">
 				<div className="logo-icon">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-						stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-						<path d="M3 3h7v7H3z" /><path d="M14 3h7v7h-7z" />
-						<path d="M3 14h7v7H3z" /><path d="M14 14h7v7h-7z" />
-					</svg>
+					<img src={logo} alt="CLC Logo" className="logo-image" style={{width:"50px", height:"40px", borderRadius:"5px", objectFit:"cover"}}/>
 				</div>
 				<div className="logo-text">
 					<span className="logo-name logo-text-login" >CLC Admin</span>

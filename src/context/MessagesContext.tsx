@@ -38,7 +38,7 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
     (async () => {
       try {
-        const res = await fetch('http://localhost:9000/api/messages', {credentials: "include", });
+        const res = await fetch('https://api.cruciallinkconsultantslt.com/api/messages', {credentials: "include", });
         if (!res.ok) {
             setMessages(FALLBACK_MESSAGES);
             setError(null); // fallback used — no visible error
@@ -70,7 +70,7 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     );
 
     // Fire and forget — post to API
-    fetch(`http://localhost:9000/api/messages/read/${id}`, {
+    fetch(`https://api.cruciallinkconsultantslt.com/api/messages/read/${id}`, {
       method: 'POST',credentials: "include", 
       headers: { 'Content-Type': 'application/json' },
     }).catch(() => {/* silently ignore */});
@@ -80,7 +80,7 @@ export const MessagesProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const deleteMessage = useCallback(async (id: string) => {
     setDeletingId(id);
     try {
-      await fetch(`http://localhost:9000/api/messages/${id}`, {
+      await fetch(`https://api.cruciallinkconsultantslt.com/api/messages/${id}`, {
         method: 'DELETE',credentials: "include", 
         headers: { 'Content-Type': 'application/json' },
       });

@@ -76,6 +76,7 @@ export const NAV_ITEMS: NavItem[] = [
 	{ label: 'Site Content', icon: 'FileText',        path: '/site-content' },
 	{ label: 'Messages',     icon: 'FolderOpen',      path: '/messages' },
 	{label: 'Careers',      icon: 'Briefcase',       path: '/careers' },
+	{label:"Works" , 	   icon: 'Handshake',       path: '/works' },
 	{ label: 'Team',         icon: 'Users',           path: '/team' },
 	{ label: 'Settings',     icon: 'Settings',        path: '/settings' },
 ];

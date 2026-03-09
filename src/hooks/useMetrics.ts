@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import type { MetricCard, DashboardPayload } from '../types';
+import { BASE_URL } from '../data/dashboard';
 
 interface UseMetricsReturn {
 	editValues: Record<string, string>;
@@ -51,7 +52,7 @@ export const useMetrics = (): UseMetricsReturn => {
 		};
 
 		try {
-			const res = await fetch('http://localhost:9000/api/website-info', {
+			const res = await fetch(`${BASE_URL}/website-info`, {
 				method: 'POST',credentials: "include", 
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(payload),

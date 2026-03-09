@@ -4,7 +4,7 @@ import { ExternalLink } from 'lucide-react';
 import { DynamicIcon } from '../icons/Icons';
 import { NAV_ITEMS } from '../../data/metrics';
 import './Sidebar.scss';
-
+import logo from "../../assets/logo.webp"
 interface SidebarProps {
 	isOpen: boolean;
 	onClose: () => void;
@@ -19,15 +19,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => (
 		<aside className={`sidebar ${isOpen ? 'sidebar--open' : ''}`}>
 			<div className="sidebar__logo">
 				<div className="logo-icon">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-						stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-						<path d="M3 3h7v7H3z" /><path d="M14 3h7v7h-7z" />
-						<path d="M3 14h7v7H3z" /><path d="M14 14h7v7h-7z" />
-					</svg>
-				</div>
-				<div className="logo-text">
-					<span className="logo-name">CLC Admin</span>
-					<span className="logo-sub">Consultants</span>
+				  <img src={logo} alt="CLC Logo" />
 				</div>
 			</div>
 
@@ -46,10 +38,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => (
 			</nav>
 
 			<div className="sidebar__footer">
-				<button className="btn-live-site">
-					<ExternalLink size={14} />
-					View Live Site
-				</button>
+				<a href='https://cruciallinkconsultantslt.com' target='_blank' rel='noopener noreferrer'>
+					<button className="btn-live-site">
+						<ExternalLink size={14} />
+						View Live Site
+					</button>
+				</a>
 			</div>
 		</aside>
 	</>

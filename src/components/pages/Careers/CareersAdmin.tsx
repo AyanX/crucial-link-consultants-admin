@@ -42,7 +42,7 @@ interface TopicsType {
   created_at: string;
 }
 
-const BASE = "http://localhost:9000/api";
+const BASE = "https://api.cruciallinkconsultantslt.com/api";
 
 // ── Helpers
 function formatDate(iso: string): string {

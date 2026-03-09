@@ -85,9 +85,6 @@ export interface MemberFormData {
 
 export type ModalMode = 'add' | 'edit';
 
-
-// ── Messages ──────────────────────────────────────────
-// ── Messages ──────────────────────────────────────────
 export interface Message {
 	id: string;
 	name: string;
@@ -127,11 +124,11 @@ export interface CallingTime {
 export interface WebsiteInfo {
   compliance_increase: string;
   compliance_time: string;
-  client_retention: string;
-  regions_served: string;
-  data_points: string;
-  years_of_experience:string;
-  total_projects:string;
+  client_retention?: string;
+  regions_served?: string;
+  data_points?: string;
+  years_of_experience?:string;
+  total_projects?:string;
   [key: string]: unknown;
 }
 

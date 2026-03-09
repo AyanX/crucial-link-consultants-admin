@@ -46,7 +46,7 @@ export const useTeam = (): UseTeamReturn => {
   const fetchMembers = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:9000/api/users", {credentials: "include", });
+      const res = await fetch("https://api.cruciallinkconsultantslt.com/api/users", {credentials: "include", });
       if (!res.ok) throw new Error("fetch failed");
       const json = await res.json();
       const data: TeamMember[] = (json.data ?? json).map((u: any) => ({
@@ -82,7 +82,7 @@ export const useTeam = (): UseTeamReturn => {
     ) => {
       setSubmitting(true);
       try {
-        const res = await fetch("http://localhost:9000/api/users", {
+        const res = await fetch("https://api.cruciallinkconsultantslt.com/api/users", {
           method: "POST",credentials: "include", 
           body: buildFormData(data),
         });
@@ -130,7 +130,7 @@ export const useTeam = (): UseTeamReturn => {
     ) => {
       setSubmitting(true);
       try {
-        const res = await fetch(`http://localhost:9000/api/users/${id}`, {
+        const res = await fetch(`https://api.cruciallinkconsultantslt.com/api/users/${id}`, {
           method: "PATCH",credentials: "include", 
           body: buildFormData(data),
         });
@@ -185,7 +185,7 @@ export const useTeam = (): UseTeamReturn => {
       onError: (msg: string) => void,
     ) => {
       try {
-        const res = await fetch(`http://localhost:9000/api/users/${id}`, {
+        const res = await fetch(`https://api.cruciallinkconsultantslt.com/api/users/${id}`, {
           method: "DELETE",credentials: "include", 
         });
         if (!res.ok) throw new Error(`Server responded with ${res.status}`);

@@ -3,19 +3,22 @@ import {
 	LayoutDashboard, FileText, FolderOpen, Users, Settings,
 	ExternalLink, Search, Bell, Pencil, Check, Save, X,
 	Info, History, TrendingUp, Globe, UserCheck, Database,
-	Shield, Award, Menu, ArrowRight, CheckCircle, XCircle,
+	Shield, Award, Menu, ArrowRight, CheckCircle, XCircle,Handshake ,
+	Briefcase,
 } from 'lucide-react';
 
 export const iconMap = {
 	LayoutDashboard,
 	FileText,
 	FolderOpen,
+	Briefcase,
 	Users,
 	Settings,
 	ExternalLink,
 	Search,
 	Bell,
 	Pencil,
+	Handshake ,
 	Check,
 	Save,
 	X,

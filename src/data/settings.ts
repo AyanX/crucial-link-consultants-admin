@@ -22,8 +22,8 @@ export const INITIAL_SETTINGS: AllSettings = {
 };
 
 export const SETTINGS_API_ENDPOINTS: Record<string, string> = {
-	contact:  'http://localhost:9000/api/contacts',
-	social:   'http://localhost:9000/api/socials',
-	security: 'http://localhost:9000/api/settings/security',
+	contact:  'https://api.cruciallinkconsultantslt.com/api/contacts',
+	social:   'https://api.cruciallinkconsultantslt.com/api/socials',
+	security: 'https://api.cruciallinkconsultantslt.com/api/settings/security',
 };
 

@@ -29,6 +29,7 @@ export const FALLBACK_CALLING_TIME: CallingTime = {
 	end_time: '18:00',
 };
 
+
 export const FALLBACK_COMPLIANCE: WebsiteInfo = {
 	compliance_increase: '42%',
 	compliance_time: '12 Months',
@@ -39,5 +40,5 @@ export const DAYS_OF_WEEK = [
 	'Thursday', 'Friday', 'Saturday', 'Sunday',
 ];
 
-export const BASE_URL = 'http://localhost:9000/api';
+export const BASE_URL = 'https://api.cruciallinkconsultantslt.com/api';
 
